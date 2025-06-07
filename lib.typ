@@ -1,4 +1,4 @@
-#import "@preview/drafting:0.2.0": *
+#import "@preview/drafting:0.2.1": *
 
 #let wideblock(content) = block(width:100%+2.5in,content)
 
@@ -168,9 +168,7 @@
     leading: 0.65em,
     first-line-indent: 1em
   )
-  show par: set block(
-    spacing: 0.65em
-  )
+  set par(spacing: 0.65em)
 
   // Frontmatter
   let titleblock(title: none,subtitle: none,) = wideblock({
@@ -280,11 +278,11 @@ Takes 2 optional keyword and 1 required argument:
 #let note(dy:-2em, numbered:true, content) = {
   if numbered {
     notecounter.step()
-    text(weight:"bold",super(notecounter.display()))
+    text(weight:"bold",super(context notecounter.display()))
   }
   text(size:9pt,font: sans-fonts,margin-note(if numbered {
     text(weight:"bold",font:"Lucida Bright",size:11pt,{
-      super(notecounter.display())
+      super(context notecounter.display())
       text(size: 9pt, " ")
     })
     content
